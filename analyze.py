@@ -2,6 +2,33 @@
 
 import ch1text
 
+# Let's teach the program how to count syllables as best we can:
+def count_syllables(words):
+    count = 0
+    for word in words:
+        word_count = count_syllables_in_word(word)
+        # This function applies heuristics to words
+        count = count + word_count
+    return count
+
+def count_syllables_in_word(word):
+    count = 0
+    if len(word) <= 3: #Words w/ <=3 letters tend to be 1 syllable
+        return 1
+    
+    vowels = 'aeiouAEIOU'
+    prev_char_was_vowel = False
+    
+    for char in word:
+        if char in vowels:
+            if not prev_char_was_vowel:
+                count = count + 1
+            prev_char_was_vowel = True
+        else:
+            prev_char_was_vowel = False
+    
+    return count
+
 def count_sentences(text):
     count = 0
     
