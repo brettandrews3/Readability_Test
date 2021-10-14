@@ -11,14 +11,21 @@ def count_syllables(words):
         count = count + word_count
     return count
 
+"""
+Counting syllables in words can be a nuanced, brain-driven process.
+Using heuristics, we're going to teach the program how to roughly
+estimate the number of syllables in a word.
+"""
 def count_syllables_in_word(word):
     count = 0
-    if len(word) <= 3: #Words w/ <=3 letters tend to be 1 syllable
+    #Words w/ <=3 letters tend to be 1 syllable
+    if len(word) <= 3:
         return 1
     
     vowels = 'aeiouAEIOU'
     prev_char_was_vowel = False
     
+    # New syllable if a consonant follows a single vowel
     for char in word:
         if char in vowels:
             if not prev_char_was_vowel:
@@ -49,8 +56,10 @@ def compute_readability(text):
     words = text.split()
     total_words = len(words)
     total_sentences = count_sentences(text)
+    total_syllables = count_syllables(words)
     
     print(total_words, 'words')
     print(total_sentences, 'sentences')
+    print(total_syllables, 'syllables')
 
 compute_readability(ch1text.text)
