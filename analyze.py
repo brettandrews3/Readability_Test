@@ -16,17 +16,28 @@ Counting syllables in words can be a nuanced, brain-driven process.
 Using heuristics, we're going to teach the program how to roughly
 estimate the number of syllables in a word.
 """
+#process_word = word[:-1]
+
 def count_syllables_in_word(word):
     count = 0
+    
+    # Remove ending punctuation from each word substring:
+    endings = ",.;'!?:"
+    last_char = word[:-1]
+    if last_char in endings:
+        processed_word = word[:-1]
+    else:
+        processed_word = word
+    
     #Words w/ <=3 letters tend to be 1 syllable
-    if len(word) <= 3:
+    if len(processed_word) <= 3:
         return 1
     
     vowels = 'aeiouAEIOU'
     prev_char_was_vowel = False
     
     # New syllable if a consonant follows a single vowel
-    for char in word:
+    for char in processed_word:
         if char in vowels:
             if not prev_char_was_vowel:
                 count = count + 1
