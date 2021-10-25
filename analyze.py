@@ -5,10 +5,12 @@ import ch1text
 # Let's teach the program how to count syllables as best we can:
 def count_syllables(words):
     count = 0
+    
     for word in words:
         word_count = count_syllables_in_word(word)
         # This function applies heuristics to words
         count = count + word_count
+    
     return count
 
 """
@@ -16,7 +18,6 @@ Counting syllables in words can be a nuanced, brain-driven process.
 Using heuristics, we're going to teach the program how to roughly
 estimate the number of syllables in a word.
 """
-#process_word = word[:-1]
 
 def count_syllables_in_word(word):
     count = 0
@@ -72,6 +73,23 @@ def count_sentences(text):
             count = count + 1
     return count
 
+#Takes the readability score and prints the reading level it represents
+def output_results(score):
+    if score >= 90.0:
+        print('5th grade reading level')
+    elif score >= 80.0:
+        print('6th grade reading level')
+    elif score >= 70.0:
+        print('7th grade reading level')
+    elif score >= 60.0:
+        print('8th-9th grade reading level')
+    elif score >= 50.0:
+        print('10th-12th grade reading level')
+    elif score >= 30.0:
+        print('College student reading level')
+    else:
+        print('Post-graduate reading level')
+
 def compute_readability(text):
     total_words = 0
     total_sentences = 0
@@ -90,6 +108,7 @@ def compute_readability(text):
     print(total_words, 'words')
     print(total_sentences, 'sentences')
     print(total_syllables, 'syllables')
-    print(score, 'reading ease score')
+    print(score, 'readability score')
+    output_results(score) # no 'print' because that's already expressed in the function
 
 compute_readability(ch1text.text)
