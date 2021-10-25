@@ -1,6 +1,5 @@
 # Analyzes text readability; part of the Readability_Test project.
-
-import ch1text
+# UPDATE: This is now a reusable module that can be imported.
 
 # Let's teach the program how to count syllables as best we can:
 def count_syllables(words):
@@ -104,11 +103,22 @@ def compute_readability(text):
     # Flesch's readability algorithm to tabulate the score
     score = (206.835 - 1.015 * (total_words / total_sentences)
              - 84.6 * (total_syllables / total_words))
-    
+    """
     print(total_words, 'words')
     print(total_sentences, 'sentences')
     print(total_syllables, 'syllables')
     print(score, 'readability score')
-    output_results(score) # no 'print' because that's already expressed in the function
+    """
+    output_results(score) # no 'print' needed - it's already expressed in function def
 
-compute_readability(ch1text.text)
+"""
+I'm setting this program up as a module now.
+By setting this conditional test below, I'm telling the
+program to run the ch1text file for testing ONLY if this
+is the main program.
+"""
+
+if __name__ == "__main__":
+    import ch1text
+    print('Chapter 1 Text:')
+    compute_readability(ch1text.text)
