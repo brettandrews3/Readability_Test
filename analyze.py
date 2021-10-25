@@ -21,9 +21,9 @@ estimate the number of syllables in a word.
 def count_syllables_in_word(word):
     count = 0
     
-    # Remove ending punctuation from each word substring:
+    # Remove ending punctuation from each word substring
     endings = ",.;'!?:"
-    last_char = word[:-1]
+    last_char = word[-1]
     if last_char in endings:
         processed_word = word[:-1]
     else:
@@ -33,10 +33,14 @@ def count_syllables_in_word(word):
     if len(processed_word) <= 3:
         return 1
     
+    # Ignore silent 'e' from word endings
+    if processed_word[-1] in 'eE':
+        processed_word = processed_word[0:-1]
+    
     vowels = 'aeiouAEIOU'
     prev_char_was_vowel = False
     
-    # New syllable if a consonant follows a single vowel
+    # Count a syllable if a consonant follows a single vowel
     for char in processed_word:
         if char in vowels:
             if not prev_char_was_vowel:
@@ -44,6 +48,10 @@ def count_syllables_in_word(word):
             prev_char_was_vowel = True
         else:
             prev_char_was_vowel = False
+    
+    # Count a syllable if word ends in y
+    if processed_word[-1] in 'yY':
+        count = count + 1
     
     return count
 
