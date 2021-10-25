@@ -55,6 +55,12 @@ def count_syllables_in_word(word):
     
     return count
 
+"""
+Sentences = substrings that finish with ending punctuation.
+The first segment of count_syllables...() creates two local variables:
+word and processed_word. 'processed_word' allows us to count syllables,
+while 'word' ........
+"""
 def count_sentences(text):
     count = 0
     
@@ -77,8 +83,13 @@ def compute_readability(text):
     total_sentences = count_sentences(text)
     total_syllables = count_syllables(words)
     
+    # Flesch's readability algorithm to tabulate the score
+    score = (206.835 - 1.015 * (total_words / total_sentences)
+             - 84.6 * (total_syllables / total_words))
+    
     print(total_words, 'words')
     print(total_sentences, 'sentences')
     print(total_syllables, 'syllables')
+    print(score, 'reading ease score')
 
 compute_readability(ch1text.text)
