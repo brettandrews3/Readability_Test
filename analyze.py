@@ -29,7 +29,7 @@ def count_syllables_in_word(word):
     else:
         processed_word = word
     
-    #Words w/ <=3 letters tend to be 1 syllable
+    # Count 1 syllable for words with <=3 letters
     if len(processed_word) <= 3:
         return 1
     
@@ -59,7 +59,7 @@ def count_syllables_in_word(word):
 Sentences = substrings that finish with ending punctuation.
 The first segment of count_syllables...() creates two local variables:
 word and processed_word. 'processed_word' allows us to count syllables,
-while 'word' ........
+while 'word' is just the pass-through variable in that first function.
 """
 def count_sentences(text):
     count = 0
