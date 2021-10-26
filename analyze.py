@@ -1,8 +1,13 @@
-# Analyzes text readability; part of the Readability_Test project.
-# UPDATE: This is now a reusable module that can be imported.
+"""The analyze module uses the Flesch-Kincaid readability test to analyze text and
+    produce a readability score. This score is then converted to a grade-based readability
+    category. Categories range from 5th grade reading level to postgraduate.
+"""
 
 # Let's teach the program how to count syllables as best we can:
 def count_syllables(words):
+    """The count_syllables function takes a list of words and returns a total count
+        of syllables across all words in the list.
+    """
     count = 0
     
     for word in words:
@@ -19,6 +24,10 @@ estimate the number of syllables in a word.
 """
 
 def count_syllables_in_word(word):
+    """The count_syllables_in_word function takes a word in the form of a substring
+        and returns the number of syllables. This function is based on heuristics for
+        syllable counting and is about 90% accurate.
+    """
     count = 0
     
     # Remove ending punctuation from each word substring
@@ -62,6 +71,9 @@ word and processed_word. 'processed_word' allows us to count syllables,
 while 'word' is just the pass-through variable in that first function.
 """
 def count_sentences(text):
+    """The count_sentences function counts the number of sentences in a text string.
+        It counts periods, semicolons, question marks, and exclamation points as terminals.
+    """
     count = 0
     
     terminals = '.;!?'
@@ -74,6 +86,9 @@ def count_sentences(text):
 
 #Takes the readability score and prints the reading level it represents
 def output_results(score):
+    """The output_results function takes the Flesch-Kincaid score and prints out
+        the corresponding reader level.
+    """
     if score >= 90.0:
         print('5th grade reading level')
     elif score >= 80.0:
@@ -90,6 +105,10 @@ def output_results(score):
         print('Post-graduate reading level')
 
 def compute_readability(text):
+    """The compute_readability function takes the text string and prints out a grade-based
+        readability score. It should accept strings of most sizes, though the longest string
+        tested so far was five paragraphs long.
+    """
     total_words = 0
     total_sentences = 0
     total_syllables = 0
