@@ -122,13 +122,18 @@ def compute_readability(text):
     # Flesch's readability algorithm to tabulate the score
     score = (206.835 - 1.015 * (total_words / total_sentences)
              - 84.6 * (total_syllables / total_words))
-    """
-    print(total_words, 'words')
-    print(total_sentences, 'sentences')
-    print(total_syllables, 'syllables')
-    print(score, 'readability score')
-    """
-    output_results(score) # no 'print' needed - it's already expressed in function def
+    
+    output_results(score)    # no 'print' needed - it's already expressed in function def
+    
+    score_values = input("Would you like to see the score values that we measured? (Y/N) ")
+    score_values = score_values.upper()
+    if score_values == 'Y':
+        print(total_words, 'words')
+        print(total_sentences, 'sentences')
+        print(total_syllables, 'syllables')
+        print(score, 'readability score')
+    else:
+        print("Thanks for analyzing!")
 
 """
 I'm setting this program up as a module now.
